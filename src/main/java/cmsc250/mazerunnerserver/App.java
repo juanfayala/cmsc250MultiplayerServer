@@ -35,7 +35,7 @@ public class App extends Application {
 
         // Create a scene and place it in the stage
         Scene scene = new Scene(new ScrollPane(ta), 450, 200);
-        primaryStage.setTitle("PongServer"); // Set the stage title
+        primaryStage.setTitle("MazeRunnerServer"); // Set the stage title
         primaryStage.setScene(scene); // Place the scene in the stage
         primaryStage.setOnCloseRequest(e -> System.exit(0));
         primaryStage.show(); // Display the stage
@@ -44,7 +44,7 @@ public class App extends Application {
             try {
                 // Create a server socket
                 ServerSocket serverSocket = new ServerSocket(8000);
-                ta.appendText("PongServer started at " + new Date() + '\n');
+                ta.appendText("MazeRunnerServer started at " + new Date() + '\n');
 
                 while (clientNo < 2) {
                     // Listen for a new connection request
