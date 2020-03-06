@@ -130,17 +130,17 @@ public class App extends Application {
                             game.moveBox(playerNumber, 0, 2);
                             break;
                         }
-                        case GET_GAME_STATE: {
-                            outputToClient.println(game.getGameState());
-                            outputToClient.flush();
-                            break;
-                        }
-                        case MOVE_LEFT: {
+                           case MOVE_LEFT: {
                             game.moveBox(playerNumber, -2, 0);
                             break;
                         }
                         case MOVE_RIGHT: {
                             game.moveBox(playerNumber, 2, 0);
+                            break;
+                        }
+                             case GET_GAME_STATE: {
+                            outputToClient.println(game.getGameState());
+                            outputToClient.flush();
                             break;
                         }
                     }

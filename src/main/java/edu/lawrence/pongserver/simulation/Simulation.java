@@ -77,28 +77,15 @@ public class Simulation implements Constants {
         // Move the box
         mover.move(dX,dY);
         
-        // Not sure if we will need this
-        if(mover.contains(ball.getRay().origin)) {
-            // If we have discovered that the box has just jumped on top of
-            // the ball, we nudge them apart until the box no longer
-            // contains the ball.
-            int bumpX = -1;
-            if(dX < 0) bumpX = 1;
-            int bumpY = -1;
-            if(dY < 0) bumpY = 1;
-            do {
-            mover.move(bumpX, bumpY);
-            ball.getRay().origin.x += -bumpX;
-            ball.getRay().origin.y += -bumpY;
-            } while(mover.contains(ball.getRay().origin));
-        }
+     // removed code that was previously here
+     
         lock.unlock();
     }
     // Useful test class
     public String getGameState() {
         Point ballLoc = ball.getRay().origin;
-        
+        // Changed game state return, to return the x coordinates of the box. 
         return Double.toString(ballLoc.x) + ' ' + ballLoc.y + ' ' + 
-                boxOne.y + ' ' + boxTwo.y;
+                boxOne.y + ' ' + boxTwo.y + ' ' + boxOne.x + ' ' + boxTwo.x;
     }
 }
