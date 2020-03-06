@@ -1,18 +1,18 @@
 package edu.lawrence.pongserver.simulation;
 
-import cmsc250.mazerunnerserver.PongConstants;
+import cmsc250.mazerunnerserver.Constants;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import edu.lawrence.pongserver.physics.*;
 
-public class Simulation implements PongConstants {
+public class Simulation implements Constants {
     private Box outer;
     private Ball ball;
     private Box boxOne;
     private Box boxTwo;
     private Lock lock;
     
-    // Constructs shapes
+    // Constructs shape objs
     public Simulation(int dX,int dY)
     {
         outer = new Box(0,0,WIDTH,HEIGHT,false); // Window border constraints

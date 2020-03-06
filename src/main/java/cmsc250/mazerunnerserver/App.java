@@ -82,17 +82,17 @@ public class App extends Application {
         public void run() {
             while (true) {
                 try {
-                    Thread.sleep(250);
+                    Thread.sleep(1);
                 } catch (Exception ex) {
 
                 }
-                sim.evolve(10);
+                sim.evolve(0.05);
             }
         }
     }
 
     // Define the thread class for handling new connection
-    class HandleAClient implements Runnable, PongConstants {
+    class HandleAClient implements Runnable, Constants {
 
         private Socket socket; // A connected socket
         private Simulation game;
@@ -123,16 +123,24 @@ public class App extends Application {
                     // Process request
                     switch (request) {
                         case MOVE_UP: {
-                            game.moveBox(playerNumber, 0, -5);
+                            game.moveBox(playerNumber, 0, -2);
                             break;
                         }
                         case MOVE_DOWN: {
-                            game.moveBox(playerNumber, 0, 5);
+                            game.moveBox(playerNumber, 0, 2);
                             break;
                         }
                         case GET_GAME_STATE: {
                             outputToClient.println(game.getGameState());
                             outputToClient.flush();
+                            break;
+                        }
+                        case MOVE_LEFT: {
+                            game.moveBox(playerNumber, -2, 0);
+                            break;
+                        }
+                        case MOVE_RIGHT: {
+                            game.moveBox(playerNumber, 2, 0);
                             break;
                         }
                     }
