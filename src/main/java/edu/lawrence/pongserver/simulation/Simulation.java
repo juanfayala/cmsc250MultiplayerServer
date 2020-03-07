@@ -11,11 +11,13 @@ public class Simulation implements Constants {
     private Box boxOne;
     private Box boxTwo;
     private Lock lock;
+    private Box goal;
     
     // Constructs shape objs
     public Simulation(int dX,int dY)
     {
         outer = new Box(0,0,WIDTH,HEIGHT,false); // Window border constraints
+        goal = new Box(0,HEIGHT,WIDTH,HEIGHT/4,false); // Goal area box
         ball = new Ball(WIDTH/2,WIDTH/2,dX,dY);
         boxOne = new Box(MARGIN,MARGIN, THICKNESS, LENGTH,true);
         boxTwo = new Box(WIDTH - MARGIN - THICKNESS,MARGIN, LENGTH, THICKNESS,true);
@@ -81,11 +83,10 @@ public class Simulation implements Constants {
      
         lock.unlock();
     }
-    // Useful test class
     public String getGameState() {
         Point ballLoc = ball.getRay().origin;
         // Changed game state return, to return the x coordinates of the box. 
         return Double.toString(ballLoc.x) + ' ' + ballLoc.y + ' ' + 
-                boxOne.y + ' ' + boxTwo.y + ' ' + boxOne.x + ' ' + boxTwo.x;
+                boxOne.y + ' ' + boxTwo.y + ' ' + boxOne.x + ' ' + boxTwo.x + ' ' + goal.x + ' ' + goal.y;
     }
 }

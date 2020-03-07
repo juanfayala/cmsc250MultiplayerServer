@@ -123,19 +123,19 @@ public class App extends Application {
                     // Process request
                     switch (request) {
                         case MOVE_UP: {
-                            game.moveBox(playerNumber, 0, -2);
+                            game.moveBox(playerNumber, 0, -5);
                             break;
                         }
                         case MOVE_DOWN: {
-                            game.moveBox(playerNumber, 0, 2);
+                            game.moveBox(playerNumber, 0, 5);
                             break;
                         }
                            case MOVE_LEFT: {
-                            game.moveBox(playerNumber, -2, 0);
+                            game.moveBox(playerNumber, -5, 0);
                             break;
                         }
                         case MOVE_RIGHT: {
-                            game.moveBox(playerNumber, 2, 0);
+                            game.moveBox(playerNumber, 5, 0);
                             break;
                         }
                              case GET_GAME_STATE: {
