@@ -7,16 +7,20 @@ import edu.lawrence.pongserver.physics.*;
 
 public class Simulation implements Constants {
     private Box outer;
-    private Ball ball;
+    //private Ball ball;
     private Box boxOne;
     private Box boxTwo;
     private Lock lock;
+    private double boxY;
+    private int player;
+    // Will be set to either 0 -> no win, 1 -> p1 wins, 2 -> p2 wins
+    private int playerWin = 0;
     
     // Constructs shape objs
     public Simulation(int dX,int dY)
     {
         outer = new Box(0,0,WIDTH,HEIGHT,false); // Window border constraints
-        ball = new Ball(WIDTH/2,WIDTH/2,dX,dY);
+        //ball = new Ball(WIDTH/2,WIDTH/2,dX,dY);
         boxOne = new Box(MARGIN,MARGIN, THICKNESS, LENGTH,true);
         boxTwo = new Box(WIDTH - MARGIN - THICKNESS,MARGIN, LENGTH, THICKNESS,true);
         lock = new ReentrantLock();
@@ -29,6 +33,7 @@ public class Simulation implements Constants {
     public void evolve(double time)
     {
         lock.lock();
+        /*
         Ray newLoc = boxOne.bounceRay(ball.getRay(), time);
         if(newLoc != null)
             ball.setRay(newLoc);
@@ -43,7 +48,7 @@ public class Simulation implements Constants {
                 else
                     ball.move(time);
             }                
-        } 
+        } */
         lock.unlock();
     }
     
@@ -51,6 +56,8 @@ public class Simulation implements Constants {
     public void moveBox(int box,int deltaX,int deltaY)
     {
         lock.lock();
+        
+        player = box;
         
         // Determine which player is attempting to move
         Box mover = boxOne;
@@ -74,6 +81,8 @@ public class Simulation implements Constants {
         if(mover.y + mover.height + deltaY > outer.height)
            dY = outer.height - mover.height - mover.y;
         
+        boxY = mover.y;
+        
         // Move the box
         mover.move(dX,dY);
         
@@ -82,9 +91,9 @@ public class Simulation implements Constants {
         lock.unlock();
     }
     public String getGameState() {
-        Point ballLoc = ball.getRay().origin;
+        if(boxY > HEIGHT - 50)
+            playerWin = player;
         // Changed game state return, to return the x coordinates of the box. 
-        return Double.toString(ballLoc.x) + ' ' + ballLoc.y + ' ' + 
-                boxOne.y + ' ' + boxTwo.y + ' ' + boxOne.x + ' ' + boxTwo.x;
+        return (Double.toString(boxOne.y) + ' ' + boxTwo.y + ' ' + boxOne.x + ' ' + boxTwo.x + ' ' + playerWin);
     }
 }
