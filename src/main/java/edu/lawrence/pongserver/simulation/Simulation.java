@@ -16,7 +16,6 @@ public class Simulation implements Constants {
     public Simulation(int dX,int dY)
     {
         outer = new Box(0,0,WIDTH,HEIGHT,false); // Window border constraints
-        ball = new Ball(WIDTH/2,WIDTH/2,dX,dY);
         boxOne = new Box(MARGIN,MARGIN, THICKNESS, LENGTH,true);
         boxTwo = new Box(WIDTH - MARGIN - THICKNESS,MARGIN, LENGTH, THICKNESS,true);
         lock = new ReentrantLock();
@@ -26,26 +25,7 @@ public class Simulation implements Constants {
     *  Also where we check if the location of the ball is within a box?
     *  We could also update the lives Label here
     */
-    public void evolve(double time)
-    {
-        lock.lock();
-        Ray newLoc = boxOne.bounceRay(ball.getRay(), time);
-        if(newLoc != null)
-            ball.setRay(newLoc);
-        else {
-            newLoc = boxTwo.bounceRay(ball.getRay(), time);
-            if(newLoc != null)
-                ball.setRay(newLoc);
-            else {
-                newLoc = outer.bounceRay(ball.getRay(), time);
-                if(newLoc != null)
-                    ball.setRay(newLoc);
-                else
-                    ball.move(time);
-            }                
-        } 
-        lock.unlock();
-    }
+
     
     // Player movement logic
     public void moveBox(int box,int deltaX,int deltaY)
@@ -82,9 +62,7 @@ public class Simulation implements Constants {
         lock.unlock();
     }
     public String getGameState() {
-        Point ballLoc = ball.getRay().origin;
         // Changed game state return, to return the x coordinates of the box. 
-        return Double.toString(ballLoc.x) + ' ' + ballLoc.y + ' ' + 
-                boxOne.y + ' ' + boxTwo.y + ' ' + boxOne.x + ' ' + boxTwo.x;
+        return Double.toString(boxOne.y) + ' ' + boxTwo.y + ' ' + boxOne.x + ' ' + boxTwo.x;
     }
 }

@@ -86,7 +86,6 @@ public class App extends Application {
                 } catch (Exception ex) {
 
                 }
-                sim.evolve(0.05);
             }
         }
     }
