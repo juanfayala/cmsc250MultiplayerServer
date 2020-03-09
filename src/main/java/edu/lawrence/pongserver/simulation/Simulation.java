@@ -60,14 +60,14 @@ public class Simulation implements Constants {
         double dX = deltaX;
         double dY = deltaY;
         
-        // Move along x axis
+        // Keep within x axis
         if(mover.x + deltaX < 0)
           dX = -mover.x;
         // Keep the box within the window x axis border
         if(mover.x + mover.width + deltaX > outer.width)
           dX = outer.width - mover.width - mover.x;
        
-        // Move along y axis
+        // Keep within y axis
         if(mover.y + deltaY < 0)
            dY = -mover.y;
         // Keep the box within the window y axis border
