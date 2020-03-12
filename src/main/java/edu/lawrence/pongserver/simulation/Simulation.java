@@ -4,6 +4,7 @@ import cmsc250.mazerunnerserver.Constants;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import edu.lawrence.pongserver.physics.*;
+import javafx.scene.control.Label;
 
 public class Simulation implements Constants {
     private Box outer;
@@ -17,6 +18,8 @@ public class Simulation implements Constants {
     private Lock lock;
     private double boxY;
     private int player;
+    int failCount1 = 0;
+    int failCount2 = 0;
     // Will be set to either 0 -> no win, 1 -> p1 wins, 2 -> p2 wins
     private int playerWin = 0;
     
@@ -165,9 +168,11 @@ public class Simulation implements Constants {
         if(player == 2) {
             boxTwo.setX(WIDTH - 40.0);
             boxTwo.setY(MARGIN);
+            failCount1++;
         } else {
             boxOne.setX(MARGIN);
             boxOne.setY(MARGIN);
+            failCount2++;
         }
            
     }
@@ -184,6 +189,6 @@ public class Simulation implements Constants {
         return (Double.toString(boxOne.y) + ' ' + boxTwo.y + ' ' + boxOne.x + ' ' + boxTwo.x + ' ' + playerWin+' '
                 +ballLoc.x + ' ' + ballLoc.y + ' '+ballLoc1.x+' ' +ballLoc1.y+' '
                 +ballLoc2.x+' '+ballLoc2.y+' '+ballLoc3.x+' '+ballLoc3.y+' '
-                +ballLoc4.x+' '+ballLoc4.y);
+                +ballLoc4.x+' '+ballLoc4.y+' '+failCount1+' '+failCount2);
     }
 }
