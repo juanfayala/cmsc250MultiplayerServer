@@ -31,7 +31,7 @@ public class App extends Application {
 
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
-        game = new Simulation(2, 2);
+        game = new Simulation(1,0);
 
         // Create a scene and place it in the stage
         Scene scene = new Scene(new ScrollPane(ta), 450, 200);
@@ -82,10 +82,11 @@ public class App extends Application {
         public void run() {
             while (true) {
                 try {
-                    Thread.sleep(1);
+                    Thread.sleep(100);
                 } catch (Exception ex) {
 
                 }
+                 sim.evolve(10);
             }
         }
     }

@@ -13,6 +13,7 @@ public class Box {
     // Set outward to true if you want a box with outward pointed normals
     public Box(double x,double y,double width,double height,boolean outward)
     {
+        
         this.x = x;
         this.y = y;
         this.width = width;
@@ -31,6 +32,13 @@ public class Box {
         }
     }
     
+    public void setX(double x) {
+        this.x = x;
+    }
+   
+    public void setY(double y) {
+        this.y = y;
+    }
     public Ray bounceRay(Ray in,double time)
     {
         // For each of the walls, check to see if the Ray intersects the wall

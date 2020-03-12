@@ -12,4 +12,8 @@ public interface Constants {
     public static double LENGTH = 20.0;
     public static double WIDTH = 640.0;
     public static double HEIGHT = 480.0;
+    // RED player (left)
+    public static int LEFT_COLLISION = 6;
+    // BLUE player (right)
+    public static int RIGHT_COLLISION = 7;
 }
