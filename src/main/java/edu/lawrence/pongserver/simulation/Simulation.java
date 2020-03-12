@@ -161,6 +161,17 @@ public class Simulation implements Constants {
      
         lock.unlock();
     }
+    public void collision(int player) {
+        if(player == 2) {
+            boxTwo.setX(WIDTH - 40.0);
+            boxTwo.setY(MARGIN);
+        } else {
+            boxOne.setX(MARGIN);
+            boxOne.setY(MARGIN);
+        }
+           
+    }
+    
     public String getGameState() {
         Point ballLoc =   movingBall1.getRay().origin;
         Point ballLoc1 =   movingBall2.getRay().origin;

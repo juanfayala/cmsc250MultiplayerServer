@@ -31,7 +31,7 @@ public class App extends Application {
 
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
-        game = new Simulation(1,0);
+        game = new Simulation(1, 0);
 
         // Create a scene and place it in the stage
         Scene scene = new Scene(new ScrollPane(ta), 450, 200);
@@ -86,7 +86,7 @@ public class App extends Application {
                 } catch (Exception ex) {
 
                 }
-                 sim.evolve(10);
+                sim.evolve(10);
             }
         }
     }
@@ -130,7 +130,7 @@ public class App extends Application {
                             game.moveBox(playerNumber, 0, 5);
                             break;
                         }
-                           case MOVE_LEFT: {
+                        case MOVE_LEFT: {
                             game.moveBox(playerNumber, -5, 0);
                             break;
                         }
@@ -138,10 +138,19 @@ public class App extends Application {
                             game.moveBox(playerNumber, 5, 0);
                             break;
                         }
-                             case GET_GAME_STATE: {
+                        case GET_GAME_STATE: {
                             outputToClient.println(game.getGameState());
                             outputToClient.flush();
                             break;
+                        }
+                        case LEFT_COLLISION: {
+                            game.collision(1);
+                            break;
+                        }
+                        case RIGHT_COLLISION: {
+                            game.collision(2);
+                            break;
+
                         }
                     }
                 }
