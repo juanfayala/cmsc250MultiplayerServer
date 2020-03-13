@@ -168,11 +168,11 @@ public class Simulation implements Constants {
         if(player == 2) {
             boxTwo.setX(WIDTH - 40.0);
             boxTwo.setY(MARGIN);
-            failCount1++;
+            failCount2++;
         } else {
             boxOne.setX(MARGIN);
             boxOne.setY(MARGIN);
-            failCount2++;
+            failCount1++;
         }
            
     }
@@ -183,6 +183,8 @@ public class Simulation implements Constants {
          Point ballLoc2 =   movingBall3.getRay().origin;
          Point ballLoc3 = movingBall4.getRay().origin;
          Point ballLoc4 = movingBall5.getRay().origin;
+         failCount1 = failCount1 -1;
+         failCount2 = failCount2 -1;
         if(boxY > HEIGHT - 50)
             playerWin = player;
         // Changed game state return, to return the x coordinates of the box. 
