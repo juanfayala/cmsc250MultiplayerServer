@@ -5,6 +5,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import edu.lawrence.pongserver.physics.*;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class Simulation implements Constants {
     private Box outer;
@@ -22,6 +24,9 @@ public class Simulation implements Constants {
     int failCount2 = 0;
     // Will be set to either 0 -> no win, 1 -> p1 wins, 2 -> p2 wins
     private int playerWin = 0;
+    private Label winLabel;
+       private Label winRed;
+       private Label winBlue;
     
     // Constructs shape objs
     public Simulation(int dX,int dY)
@@ -176,21 +181,40 @@ public class Simulation implements Constants {
         }
            
     }
-    
+  
     public String getGameState() {
         Point ballLoc =   movingBall1.getRay().origin;
         Point ballLoc1 =   movingBall2.getRay().origin;
          Point ballLoc2 =   movingBall3.getRay().origin;
          Point ballLoc3 = movingBall4.getRay().origin;
          Point ballLoc4 = movingBall5.getRay().origin;
-         failCount1 = failCount1 -1;
-         failCount2 = failCount2 -1;
+
+         if(player==1){
+
+        winRed = new Label("Red Player Wins");
+        winRed.setFont(new Font("Helvetica Bold", 16));
+        winRed.setTextFill(Color.WHITE);
+        winRed.setMinWidth(20);
+        winRed.setMinHeight(10);
+        winRed.setLayoutX(580.0);
+        winRed.setLayoutY(0);
+
+         }
+         else if(player==2){
+        winBlue = new Label("Blue Player Wins");
+        winBlue.setFont(new Font("Helvetica Bold", 16));
+        winBlue.setTextFill(Color.WHITE);
+        winBlue.setMinWidth(20);
+        winBlue.setMinHeight(10);
+        winBlue.setLayoutX(580.0);
+        winBlue.setLayoutY(0);
+         }
         if(boxY > HEIGHT - 50)
             playerWin = player;
         // Changed game state return, to return the x coordinates of the box. 
         return (Double.toString(boxOne.y) + ' ' + boxTwo.y + ' ' + boxOne.x + ' ' + boxTwo.x + ' ' + playerWin+' '
                 +ballLoc.x + ' ' + ballLoc.y + ' '+ballLoc1.x+' ' +ballLoc1.y+' '
                 +ballLoc2.x+' '+ballLoc2.y+' '+ballLoc3.x+' '+ballLoc3.y+' '
-                +ballLoc4.x+' '+ballLoc4.y+' '+failCount1+' '+failCount2);
+                +ballLoc4.x+' '+ballLoc4.y+' '+failCount1+' '+failCount2+' '+winLabel);
     }
 }
